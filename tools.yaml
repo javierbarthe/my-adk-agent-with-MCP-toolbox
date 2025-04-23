@@ -1,0 +1,33 @@
+sources:
+  my-alloydb-pg-source:
+      kind: "alloydb-postgres"
+      project: "my-first-project-424319"
+      region: "us-central1"
+      cluster: "my-alloydb1"
+      instance: "my-alloydb1-primary"
+      database: "dvdrental"
+      user: "postgres"
+      password: "SuperAdmin22"
+tools:
+  search-films-by-title:
+    kind: postgres-sql
+    source: my-alloydb-pg-source
+    description: Search for films based on title.
+    parameters:
+      - name: film
+        type: string
+        description: The title of the film.
+    statement: SELECT title,description FROM film WHERE title ILIKE '%' || $1 || '%';
+  search-films-by-description:
+    kind: postgres-sql
+    source: my-alloydb-pg-source
+    description: Search for films based on a description.
+    parameters:
+      - name: description
+        type: string
+        description: Description of the film.
+    statement: SELECT title,description FROM film order by embedding <=> embedding('text-multilingual-embedding-002', $1)::vector LIMIT 3;
+toolsets:
+  my-toolset:
+    - search-films-by-title
+    - search-films-by-description
