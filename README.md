@@ -48,21 +48,5 @@ make install
 start_stop_services.sh start
 make playground
 ```
-
-## Commands
-
-
-| Command              | Description                                                                                 |
-| -------------------- | ------------------------------------------------------------------------------------------- |
-| `make install`       | Install all required dependencies using uv                                                  |
-| `make playground`    | Launch Streamlit interface for testing agent locally and remotely |
-| `make backend`       | Deploy agent to Agent Engine |
-| `make test`          | Run unit and integration tests                                                              |
-| `make lint`          | Run code quality checks (codespell, ruff, mypy)                                             |
-| `make setup-dev-env` | Set up development environment resources using Terraform                                    |
-| `uv run jupyter lab` | Launch Jupyter notebook                                                                     |
-
-
-
-## Usage
-
+This is an snapshot of the assistant:
+![alt text](https://services.google.com/fh/files/misc/agent_screenshot.png?raw=true)
