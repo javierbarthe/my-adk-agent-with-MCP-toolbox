@@ -27,7 +27,23 @@ tools:
         type: string
         description: Description of the film.
     statement: SELECT title,description FROM film order by embedding <=> embedding('text-multilingual-embedding-002', $1)::vector LIMIT 3;
+  rent-films:
+    kind: postgres-sql
+    source: my-alloydb-pg-source
+    description: Rent a film.
+    parameters:
+      - name: title
+        type: string
+        description: Description of the film.
+    statement:  insert into public.rentals values ($1, now());
+  retrieve-rentals:
+    kind: postgres-sql
+    source: my-alloydb-pg-source
+    description: Retrieve my rentals.
+    statement:  select title from public.rentals;
 toolsets:
   my-toolset:
     - search-films-by-title
     - search-films-by-description
+    - rent-films
+    - retrieve-rentals
